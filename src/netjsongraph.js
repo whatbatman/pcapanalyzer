@@ -451,9 +451,10 @@
                 if(opts.defaultStyle) {
                     var colors = d3.scale.category20c();
                     node.style({
-                        "fill": function(d){ return colors(d.linkCount); },
+                        "fill": "#a1d99b",//function(d){ return colors(d.linkCount); },
                         "cursor": "pointer"
                     });
+                    console.log(colors(1));
                 }
                 // Metadata style
                 if(opts.metadata) {
