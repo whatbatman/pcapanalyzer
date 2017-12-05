@@ -319,6 +319,23 @@
             removeOpenClass = function () {
                 d3.selectAll("svg .njg-open").classed("njg-open", false);
             };
+            processEvil = function(graph) {
+              var request = new XMLHttpRequest();
+              request.open("GET", "../evilNodes.json", false);
+              request.send(null)
+              var my_JSON_object = JSON.parse(request.responseText);
+              for(i = 0; i < my_JSON_object.evilNodes.length; i++) {
+                console.log("maaa");
+                for(j =0; j < node[0].length; j++) {
+                  console.log("fory")
+                  if(my_JSON_object.evilNodes[i].id == node[0][j].__data__.id) {
+                    console.log("init")
+                    node[0][j].style.fill = "#AB132C"
+                  }
+                }
+              }
+
+            };
             processJson = function(graph) {
                 /**
                  * Init netJsonGraph
@@ -522,6 +539,7 @@
 
         if(typeof(url) === "object") {
             processJson(url);
+            processEvil();
         }
         else {
             /**
@@ -562,6 +580,7 @@
                 }
                 else {
                     processJson(graph);
+                    processEvil(graph);
                 }
             });
         }
